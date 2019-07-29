@@ -40,7 +40,9 @@ public class OkHttpManager {
 
     private OkHttpManager() {
         mOkHttpClient = new OkHttpClient();
-        mOkHttpClient.newBuilder().connectTimeout(10, TimeUnit.SECONDS).readTimeout(10, TimeUnit.SECONDS)
+        mOkHttpClient.newBuilder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS);
         mGson = new Gson();
         handler = new Handler(Looper.getMainLooper());
@@ -58,17 +60,32 @@ public class OkHttpManager {
      * 对外公布的可调方法
      ************************/
 
-    public void getRequest(String url, final BaseCallBack callBack) {
+    /**
+     * async GET 请求
+     * @url 请求链接
+     * @callBack 请求回调
+     **/
+    public void get(String url, final BaseCallBack callBack) {
         Request request = buildRequest(url, null, HttpMethodType.GET);
         doRequest(request, callBack);
     }
 
-    public void postRequest(String url, final BaseCallBack callBack, Map<String, String> params) {
+    /**
+     * async POST 请求
+     * @url 请求链接
+     * @params 请求参数
+     * @callBack 请求回调
+     **/
+    public void post(String url, final BaseCallBack callBack, Map<String, String> params) {
         Request request = buildRequest(url, params, HttpMethodType.POST);
         doRequest(request, callBack);
     }
 
-    public void postUploadSingleImage(String url, final BaseCallBack callback, File file, String fileKey, Map<String, String> params) {
+    /**
+     * async POST 上传单个文件
+     * @callBack 请求回调
+     **/
+    public void uploadFile(String url, final BaseCallBack callback, File file, String fileKey, Map<String, String> params) {
         Param[] paramsArr = fromMapToParams(params);
 
         try {
@@ -79,7 +96,11 @@ public class OkHttpManager {
 
     }
 
-    public void postUploadMoreImages(String url, final BaseCallBack callback, File[] files, String[] fileKeys, Map<String, String> params) {
+    /**
+     * async POST 上传多个文件
+     * @callBack 请求回调
+     **/
+    public void uploadFiles(String url, final BaseCallBack callback, File[] files, String[] fileKeys, Map<String, String> params) {
         Param[] paramsArr = fromMapToParams(params);
 
         try {
@@ -90,29 +111,11 @@ public class OkHttpManager {
 
     }
 
-    /***********************
-     * 对内方法
-     ************************/
-    //单个文件上传请求  不带参数
-    private void postAsyn(String url, BaseCallBack callback, File file, String fileKey) throws IOException {
-        Request request = buildMultipartFormRequest(url, new File[]{file}, new String[]{fileKey}, null);
-        doRequest(request, callback);
-    }
-
-    //单个文件上传请求 带参数
-    private void postAsyn(String url, BaseCallBack callback, File file, String fileKey, Param... params) throws IOException {
-        Request request = buildMultipartFormRequest(url, new File[]{file}, new String[]{fileKey}, params);
-        doRequest(request, callback);
-    }
-
-    //多个文件上传请求 带参数
-    private void postAsyn(String url, BaseCallBack callback, File[] files, String[] fileKeys, Param... params) throws IOException {
-        Request request = buildMultipartFormRequest(url, files, fileKeys, params);
-        doRequest(request, callback);
-    }
-
-    //异步下载文件
-    public void asynDownloadFile(final String url, final String destFileDir, final BaseCallBack callBack) {
+    /**
+     * async 下载文件
+     * @callBack 请求回调
+     **/
+    public void downloadFile(final String url, final String destFileDir, final BaseCallBack callBack) {
         final Request request = buildRequest(url, null, HttpMethodType.GET);
         callBack.OnRequestBefore(request);  //提示加载框
         mOkHttpClient.newCall(request).enqueue(new Callback() {
@@ -123,7 +126,6 @@ public class OkHttpManager {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-//                callBack.onResponse(response);
 
                 InputStream is = null;
                 byte[] buf = new byte[1024*2];
@@ -162,7 +164,44 @@ public class OkHttpManager {
             }
         });
 
+    }
 
+    /**
+     * 取消网络请求
+     * Activity页面所有的请求以Activity对象作为tag，可以在onDestory()里面统一取消,this
+     */
+    public void cancelTag(Object tag) {
+        for (Call call : mOkHttpClient.dispatcher().queuedCalls()) {
+            if (tag.equals(call.request().tag())) {
+                call.cancel();
+            }
+        }
+        for (Call call : mOkHttpClient.dispatcher().runningCalls()) {
+            if (tag.equals(call.request().tag())) {
+                call.cancel();
+            }
+        }
+    }
+
+    /***********************
+     * 对内方法
+     ************************/
+    //单个文件上传请求  不带参数
+    private void postAsyn(String url, BaseCallBack callback, File file, String fileKey) throws IOException {
+        Request request = buildMultipartFormRequest(url, new File[]{file}, new String[]{fileKey}, null);
+        doRequest(request, callback);
+    }
+
+    //单个文件上传请求 带参数
+    private void postAsyn(String url, BaseCallBack callback, File file, String fileKey, Param... params) throws IOException {
+        Request request = buildMultipartFormRequest(url, new File[]{file}, new String[]{fileKey}, params);
+        doRequest(request, callback);
+    }
+
+    //多个文件上传请求 带参数
+    private void postAsyn(String url, BaseCallBack callback, File[] files, String[] fileKeys, Param... params) throws IOException {
+        Request request = buildMultipartFormRequest(url, files, fileKeys, params);
+        doRequest(request, callback);
     }
 
     //构造上传图片 Request
@@ -191,19 +230,7 @@ public class OkHttpManager {
                 .post(requestBody)
                 .build();
     }
-    //Activity页面所有的请求以Activity对象作为tag，可以在onDestory()里面统一取消,this
-    public void cancelTag(Object tag) {
-        for (Call call : mOkHttpClient.dispatcher().queuedCalls()) {
-            if (tag.equals(call.request().tag())) {
-                call.cancel();
-            }
-        }
-        for (Call call : mOkHttpClient.dispatcher().runningCalls()) {
-            if (tag.equals(call.request().tag())) {
-                call.cancel();
-            }
-        }
-    }
+
     private String guessMimeType(String path) {
         FileNameMap fileNameMap = URLConnection.getFileNameMap();
         String contentTypeFor = fileNameMap.getContentTypeFor(path);
@@ -212,10 +239,12 @@ public class OkHttpManager {
         }
         return contentTypeFor;
     }
+
     private String getFileName(String path) {
         int separatorIndex = path.lastIndexOf("/");
         return (separatorIndex < 0) ? path : path.substring(separatorIndex + 1, path.length());
     }
+
     private Param[] fromMapToParams(Map<String, String> params) {
         if (params == null)
             return new Param[0];
@@ -272,11 +301,14 @@ public class OkHttpManager {
 
         Request.Builder builder = new Request.Builder();
         builder.url(url);
-        if (methodType == HttpMethodType.GET) {
-            builder.get();
-        } else if (methodType == HttpMethodType.POST) {
-            RequestBody requestBody = buildFormData(params);
-            builder.post(requestBody);
+        switch (methodType) {
+            case GET:
+                builder.get();
+                break;
+            case POST:
+                RequestBody requestBody = buildFormData(params);
+                builder.post(requestBody);
+                break;
         }
         return builder.build();
     }
@@ -286,7 +318,6 @@ public class OkHttpManager {
         FormBody.Builder builder = new FormBody.Builder();
         builder.add("platform", "android");
         builder.add("version", "1.0");
-        builder.add("key", "123456");
         if (params != null) {
             for (Map.Entry<String, String> entry : params.entrySet()) {
                 builder.add(entry.getKey(), entry.getValue());
@@ -347,7 +378,7 @@ Map<String, String> params = new HashMap<String, String>();
                     params.put("Mobile", username.getText().toString());
                     params.put("PassWord", password.getText().toString());
 
-                    OkHttpManager.getInstance().postRequest(Constants.LOGIN_URL, new LoadCallBack<String>(getActivity()) {
+                    OkHttpManager.getInstance().post(Constants.LOGIN_URL, new LoadCallBack<String>(getActivity()) {
                                 @Override
                                 protected void onSuccess(Call call, Response response, String s) {
                                     Log.e("lgz", "onSuccess = " + s);
@@ -363,7 +394,7 @@ Map<String, String> params = new HashMap<String, String>();
 */
 
 /* 异步下载文件
-OkHttpManager.getInstance().asynDownloadFile("http://www.7mlzg.com/uploads/bwf_1477419976.jpg", FILE_PATH, new FileCallBack<String>(getActivity()) {
+OkHttpManager.getInstance().downloadFile("http://www.7mlzg.com/uploads/bwf_1477419976.jpg", FILE_PATH, new FileCallBack<String>(getActivity()) {
                     @Override
                     protected void onResponse(Response response) {
 
