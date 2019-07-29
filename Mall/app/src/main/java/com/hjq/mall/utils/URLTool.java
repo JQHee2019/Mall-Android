@@ -8,7 +8,7 @@ public class URLTool {
     /**
      * 根据map集合拼接成URL
      */
-    private static String paramsConvertUrl(Map<String, Object> params) {
+    public static String paramsConvertUrl(Map<String, Object> params) {
         StringBuilder urlParams = new StringBuilder("?");
         Set<Map.Entry<String, Object>> entries = params.entrySet();
         for (Map.Entry<String, Object> entry : params.entrySet()) {
