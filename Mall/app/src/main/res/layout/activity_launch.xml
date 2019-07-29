@@ -5,5 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LaunchActivity">
+    
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name"
+        android:background="@drawable/splash_bacground"/>
 
 </android.support.constraint.ConstraintLayout>
