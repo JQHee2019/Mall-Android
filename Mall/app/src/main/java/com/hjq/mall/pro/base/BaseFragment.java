@@ -12,9 +12,10 @@ import com.hjq.mall.mvp.view.impl.MvpFragment;
 /**
  *
  */
-public abstract class BaseFragment<P extends MvpBasePresenter> extends MvpFragment<P> {
+public abstract class BaseFragment<P extends MvpBasePresenter> extends MvpFragment<P>{
     //我们自己的Fragment需要缓存视图
     private View viewContent;//缓存视图
+    private boolean isInit;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,7 +33,26 @@ public abstract class BaseFragment<P extends MvpBasePresenter> extends MvpFragme
         return viewContent;
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (!isInit){
+            this.isInit = true;
+            initData();
+        }
+    }
+
+    @Override
+    public P bindPresenter() {
+        return null;
+    }
+
+
     public abstract int getContentView();
+
+    public void initData(){
+
+    }
 
     public abstract void initContentView(View viewContent);
 
