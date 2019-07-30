@@ -5,5 +5,9 @@ package com.hjq.mall.http;
 */
 public class Constants {
 
-    static String baseURL = "https://www.baidu.com";
+    // 基本链接
+    public static String baseURL = "http://api.budejie.com";
+
+    // 精华
+    public static String essence = baseURL.concat("/api/api_open.php");
 }

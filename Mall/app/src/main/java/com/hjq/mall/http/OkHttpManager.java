@@ -34,7 +34,7 @@ public class OkHttpManager {
 
     private OkHttpClient mOkHttpClient;
 
-    private Gson mGson;
+    // private Gson mGson;
 
     private Handler handler;
 
@@ -44,7 +44,8 @@ public class OkHttpManager {
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS);
-        mGson = new Gson();
+        // mGson = new Gson();
+
         handler = new Handler(Looper.getMainLooper());
     }
 
@@ -277,8 +278,9 @@ public class OkHttpManager {
                         callBackSuccess(callBack, call, response, result);
                     } else {
                         try {
-                            Object object = mGson.fromJson(result, callBack.mType);//自动转化为 泛型对象
-                            callBackSuccess(callBack, call, response, object);
+                            // Object object = mGson.fromJson(result, callBack.mType);//自动转化为 泛型对象
+                            // callBackSuccess(callBack, call, response, object);
+                            callBackSuccess(callBack, call, response, result);
                         } catch (JsonParseException e) {
                             //json解析错误时调用
                             callBack.onEror(call, response.code(), e);
@@ -333,7 +335,6 @@ public class OkHttpManager {
                 callBack.onSuccess(call, response, object);
             }
         });
-
     }
 
     private void callBackError(final BaseCallBack callBack, final Call call, final int code) {
@@ -343,7 +344,6 @@ public class OkHttpManager {
                 callBack.onEror(call, code, null);
             }
         });
-
     }
 
     private Param[] validateParam(Param[] params) {
