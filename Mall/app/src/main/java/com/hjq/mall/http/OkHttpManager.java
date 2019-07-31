@@ -332,7 +332,16 @@ public class OkHttpManager {
         handler.post(new Runnable() {
             @Override
             public void run() {
+                Looper myLooper = Looper.myLooper();
+                if (myLooper == null) {
+                    Looper.prepare();
+                    myLooper = Looper.myLooper();
+                }
                 callBack.onSuccess(call, response, object);
+                if ( myLooper != null) {
+                    Looper.loop();
+                    myLooper.quit();
+                }
             }
         });
     }
@@ -341,7 +350,16 @@ public class OkHttpManager {
         handler.post(new Runnable() {
             @Override
             public void run() {
+                Looper myLooper = Looper.myLooper();
+                if (myLooper == null) {
+                    Looper.prepare();
+                    myLooper = Looper.myLooper();
+                }
                 callBack.onEror(call, code, null);
+                if ( myLooper != null) {
+                    Looper.loop();
+                    myLooper.quit();
+                }
             }
         });
     }

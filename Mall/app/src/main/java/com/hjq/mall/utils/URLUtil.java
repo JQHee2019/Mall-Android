@@ -3,7 +3,7 @@ package com.hjq.mall.utils;
 import java.util.Map;
 import java.util.Set;
 
-public class URLTool {
+public class URLUtil {
 
     /**
      * 根据map集合拼接成URL

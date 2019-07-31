@@ -2,6 +2,8 @@ package com.hjq.mall.http;
 
 import android.content.Context;
 
+import com.hjq.mall.pro.base.view.loading.LoadingProgressDialog;
+
 import java.io.IOException;
 
 // import dmax.dialog.SpotsDialog;
@@ -11,30 +13,32 @@ import okhttp3.Response;
 
 //添加对请求时对话框的处理
 public abstract class LoadCallBack<T> extends BaseCallBack<T> {
+
     private Context context;
-    // private SpotsDialog spotsDialog;
+    private String message;
+    private boolean isCancelable;
 
     public LoadCallBack(Context context) {
         this.context = context;
-        // spotsDialog = new SpotsDialog(context);
     }
 
     private void showDialog() {
-        // spotsDialog.show();
+        LoadingProgressDialog.showLoading(context, message, isCancelable);
     }
 
     private void hideDialog() {
-//        if (spotsDialog != null) {
-//            spotsDialog.dismiss();
-//        }
+        LoadingProgressDialog.stopLoading();
     }
 
-    public void setMsg(String str) {
-        // spotsDialog.setMessage(str);
+    public void setMsg(String str, boolean isCancelable) {
+        this.isCancelable = isCancelable;
+        this.message = str;
+
     }
 
-    public void setMsg(int resId) {
-        // spotsDialog.setMessage(context.getString(resId));
+    public void setMsg(int resId, boolean isCancelable) {
+        this.isCancelable = isCancelable;
+        this.message = context.getString(resId);
     }
 
 

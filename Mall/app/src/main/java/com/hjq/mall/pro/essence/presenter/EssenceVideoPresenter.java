@@ -34,13 +34,13 @@ public class EssenceVideoPresenter extends BasePresenter<EssenceVideoModel> {
         if (isDownRefresh){
             maxtime = null;
         }
-        //执行网络请求
-        getModel().getEssenceList(type, page, maxtime, new LoadCallBack<String>(getContext()) {
+
+        LoadCallBack callBack = new LoadCallBack<String>(getContext()) {
             @Override
             protected void onSuccess(Call call, Response response, String result) {
                 if (TextUtils.isEmpty(result)){
                     //等于空---通知UI线程---刷新UI界面
-                    onUIThreadListener.onResult(null);
+                    onUIThreadListener.onSuccess(null);
                 } else {
                     //不等于null
                     //解析数据
@@ -57,14 +57,18 @@ public class EssenceVideoPresenter extends BasePresenter<EssenceVideoModel> {
                     //MVP架构---编程思想---属于移动架构师
                     //MVP架构适合面向对象的语言设计
                     //编程思想运用在任何的语言
-                    onUIThreadListener.onResult(postsListBean.getList());
+                    onUIThreadListener.onSuccess(postsListBean.getList());
                 }
             }
 
             @Override
             protected void onEror(Call call, int statusCode, Exception e) {
-                onUIThreadListener.onResult(null);
+                onUIThreadListener.onError(null);
             }
-        });
+        };
+        callBack.setMsg("加载中...", true);
+
+        //执行网络请求
+        getModel().getEssenceList(type, page, maxtime, callBack);
     }
 }

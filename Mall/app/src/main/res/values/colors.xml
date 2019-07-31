@@ -21,5 +21,7 @@
     <color name="item_build_default_normal">@android:color/white</color>
     <color name="item_build_default_press">#F6F6F6</color>
 
+    <color name="alpha_80_black">#CC000000</color>
+
 
 </resources>

@@ -94,28 +94,29 @@ public class EssenceVideoFragment extends BaseFragment {
     private void loadData(final boolean isDownRefresh){
         presenter.getEssenceList(mType, isDownRefresh, new BasePresenter.OnUIThreadListener<List<PostsListBean.PostList>>() {
             @Override
-            public void onResult(List<PostsListBean.PostList> result) {
+            public void onSuccess(List<PostsListBean.PostList> result) {
                 if (isDownRefresh){
                     refreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
                 }else{
                     refreshLayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
                 }
                 if (result == null){
-                    Looper.prepare();
                     ToastUtil.showToast(getContext(),"加载失败");
-                    Looper.loop();
                 }else {
-                    Looper.prepare();
                     ToastUtil.showToast(getContext(),"加载成功");
-                    Looper.loop();
                     //刷新UI
                     if (isDownRefresh){
-                        //如果你是下拉刷新,我就情况列表
+                        // 如果你是下拉刷新,我就情况列表
                         postList.clear();
                     }
                     postList.addAll(result);
                     videoAdapter.notifyDataSetChanged();
                 }
+            }
+
+            @Override
+            public void onError(String message) {
+                ToastUtil.showToast(getContext(),"加载失败");
             }
         });
     }

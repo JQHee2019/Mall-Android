@@ -33,6 +33,7 @@ public abstract class BasePresenter<M extends BaseModel> extends MvpBasePresente
     public abstract M bindModel();
 
     public interface OnUIThreadListener<T>{
-        public void onResult(T result);
+        public void onSuccess(T result);
+        public void onError(String message);
     }
 }
