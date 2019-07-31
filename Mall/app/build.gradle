@@ -83,4 +83,12 @@ dependencies {
 
     /* 工具类库 加密等*/
     implementation 'com.blankj:utilcode:1.23.4'
+
+    /* RecyclerView 依赖 适用多种复杂布局*/
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    // RecyclerView 分割线
+    implementation 'com.choices.divider:RecyclerView_Divider:1.0.0'
+    // item选中效果
+    // implementation 'com.android.support:recyclerview-selection:28.0.0'
+
 }

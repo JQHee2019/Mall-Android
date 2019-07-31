@@ -1,6 +1,7 @@
 package com.hjq.mall.pro.essence.view;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.v4.app.Fragment;

@@ -1,16 +1,24 @@
 package com.hjq.mall;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.hjq.mall.pro.attention.view.AttentionFragment;
+import com.hjq.mall.pro.base.view.bage.BadgeView;
 import com.hjq.mall.pro.essence.view.EssenceFragment;
 import com.hjq.mall.pro.mine.view.MineFragment;
 import com.hjq.mall.pro.newpost.view.NewpostFragment;
@@ -37,19 +45,19 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
     private void initTabData(){
         tabItemList = new ArrayList<TabItem>();
         //添加精华Tab
-        tabItemList.add(new TabItem(R.drawable.main_bottom_essence_normal
+        tabItemList.add( new TabItem(this, R.drawable.main_bottom_essence_normal
                 ,R.drawable.main_bottom_essence_press,R.string.main_essence_text, EssenceFragment.class));
         //添加新帖Tab
-        tabItemList.add(new TabItem(R.drawable.main_bottom_newpost_normal
+        tabItemList.add(new TabItem(this, R.drawable.main_bottom_newpost_normal
                 ,R.drawable.main_bottom_newpost_press,R.string.main_newpost_text, NewpostFragment.class));
         //添加发布Tab
-        tabItemList.add(new TabItem(R.drawable.main_bottom_public_normal
+        tabItemList.add(new TabItem(this, R.drawable.main_bottom_public_normal
                 ,R.drawable.main_bottom_public_press,0, PublishFragment.class));
         //添加关注Tab
-        tabItemList.add(new TabItem(R.drawable.main_bottom_attention_normal
+        tabItemList.add(new TabItem(this, R.drawable.main_bottom_attention_normal
                 ,R.drawable.main_bottom_attention_press,R.string.main_attention_text, AttentionFragment.class));
         //添加我的Tab
-        tabItemList.add(new TabItem(R.drawable.main_bottom_mine_normal
+        tabItemList.add(new TabItem(this, R.drawable.main_bottom_mine_normal
                 ,R.drawable.main_bottom_mine_press,R.string.main_mine_text, MineFragment.class));
 
     }
@@ -62,7 +70,7 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
         fragmentTabHost.setup(this,getSupportFragmentManager(),android.R.id.tabcontent);
         //去掉分割线
         fragmentTabHost.getTabWidget().setDividerDrawable(null);
-        for (int i= 0; i<tabItemList.size() ;i++){
+        for (int i= 0; i<tabItemList.size(); i++){
             TabItem tabItem = tabItemList.get(i);
             //绑定Fragment(将Fragment添加到FragmentTabHost组件上面)
             //newTabSpec:代表Tab名字
@@ -120,12 +128,15 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
         private ImageView imageView;
         private TextView textView;
         private Bundle bundle;
+        private Activity context;
+        private BadgeView badgeView;
 
-        public TabItem(int imageNormal,int imagePress,int title,Class<? extends Fragment> fragmentClass){
+        public TabItem(final Activity context, int imageNormal, int imagePress, int title, Class<? extends Fragment> fragmentClass){
             this.imageNormal = imageNormal;
             this.imagePress = imagePress;
             this.title = title;
             this.fragmentClass = fragmentClass;
+            this.context = context;
         }
 
         public Class<? extends Fragment> getFragmentClass() {
@@ -142,6 +153,10 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
 
         public int getTitle() {
             return title;
+        }
+
+        public ImageView getImageView() {
+            return imageView;
         }
 
         public String getTitleString() {
@@ -183,6 +198,7 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
         public View getView(){
             if (this.view == null){
                 this.view = getLayoutInflater().inflate(R.layout.view_tab_indicator,null);
+                FrameLayout fl_layout = (FrameLayout)this.view.findViewById(R.id.fl_layout);
                 this.imageView = (ImageView)this.view.findViewById(R.id.iv_tab);
                 this.textView = (TextView) this.view.findViewById(R.id.tv_tab);
                 //判断资源是否存在,不再我就因此
@@ -194,6 +210,16 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
                 }
                 //绑定图片默认资源
                 this.imageView.setImageResource(imageNormal);
+                badgeView = new BadgeView((MainActivity) context, fl_layout);
+                badgeView.setText("12");
+                badgeView.setTextSize(9f);
+                badgeView.setTextColor(Color.WHITE);
+                badgeView.setBadgePosition(BadgeView.POSITION_TOP_RIGHT);
+                badgeView.setAlpha(1f);
+                badgeView.setBackgroundResource(R.drawable.shape_round_textview);
+                badgeView.setBadgeMargin(0,0);
+                // badgeView.setAnimation(alphaAnimation);
+                badgeView.show();
             }
             return this.view;
         }

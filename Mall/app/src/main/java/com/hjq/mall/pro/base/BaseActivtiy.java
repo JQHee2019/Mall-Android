@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import com.hjq.mall.mvp.presenter.impl.MvpBasePresenter;
 import com.hjq.mall.mvp.view.impl.MvpActivity;
 import com.hjq.mall.utils.eventbus.EventBusUtil;
+import com.hjq.mall.utils.permission.PermissionManager;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -41,6 +42,11 @@ public abstract class BaseActivtiy<P extends MvpBasePresenter> extends MvpActivi
         if (isRegisterEventBus()) {//注销EventBus
             EventBusUtil.unregister(this);
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        PermissionManager.getInstance().onRequestPermissionsResult(this, requestCode, permissions, grantResults);
     }
 
     /**

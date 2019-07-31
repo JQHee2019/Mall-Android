@@ -1,5 +1,6 @@
 package com.hjq.mall.http;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.hjq.mall.pro.base.view.dialogs.LoadingProgressDialog;
@@ -23,6 +24,7 @@ public abstract class LoadCallBack<T> extends BaseCallBack<T> {
     }
 
     private void showDialog() {
+        LoadingProgressDialog.stopLoading();
         LoadingProgressDialog.showLoading(context, message, isCancelable);
     }
 
