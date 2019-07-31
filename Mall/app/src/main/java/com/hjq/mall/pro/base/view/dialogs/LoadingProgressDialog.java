@@ -1,4 +1,4 @@
-package com.hjq.mall.pro.base.view.loading;
+package com.hjq.mall.pro.base.view.dialogs;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hjq.mall.R;
 import com.hjq.mall.http.OkHttpManager;

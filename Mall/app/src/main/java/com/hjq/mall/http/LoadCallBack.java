@@ -2,7 +2,7 @@ package com.hjq.mall.http;
 
 import android.content.Context;
 
-import com.hjq.mall.pro.base.view.loading.LoadingProgressDialog;
+import com.hjq.mall.pro.base.view.dialogs.LoadingProgressDialog;
 
 import java.io.IOException;
 
