@@ -8,9 +8,12 @@ import com.hjq.mall.utils.LoggerUtil;
 
 public class App extends Application {
 
+    private static App instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         initLib();
     }
 
@@ -26,5 +29,9 @@ public class App extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+    }
+
+    public static synchronized App getInstance() {
+        return instance;
     }
 }
