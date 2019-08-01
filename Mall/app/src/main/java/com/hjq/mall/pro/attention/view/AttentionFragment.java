@@ -97,8 +97,9 @@ public class AttentionFragment extends BaseFragment {
         });
 
         // 设置viewpager缓存页面个数，建议：有 n 个tab就缓存 n-1 个页
-        // viewPager.setOffscreenPageLimit(1);
+        viewPager.setOffscreenPageLimit(1);
         tablayout.setTabData(mTabs);
+        tablayout.setCurrentTab(0);
     }
 
 
