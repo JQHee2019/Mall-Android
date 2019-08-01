@@ -1,6 +1,7 @@
 package com.hjq.mall.pro.newpost.view;
 
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.hjq.mall.R;
@@ -56,6 +58,19 @@ public class NewpostFragment extends BaseFragment {
 
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.addJavascriptInterface(new JSObject(),"Native");
+
+        // 方便设置loading
+        mWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+            }
+        });
+
         mWebView.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
