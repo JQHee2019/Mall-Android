@@ -19,3 +19,4 @@ x14、eventbus 切线程
 √15、富文本工具
 x16、greendao
 √17、拨打电话
+x18、内存泄漏LeakCanary

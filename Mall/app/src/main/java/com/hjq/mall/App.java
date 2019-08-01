@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.hjq.mall.utils.LoggerUtil;
+import com.squareup.leakcanary.LeakCanary;
 
 public class App extends Application {
 
@@ -15,11 +16,26 @@ public class App extends Application {
         super.onCreate();
         instance = this;
         initLib();
+
     }
 
     private void initLib() {
         // 日志工具
         LoggerUtil.setup();
+        initLeakCanary();
+    }
+
+    /**
+     *
+     * 性能优化工具 内存泄漏检测
+     */
+    private void initLeakCanary() {
+        if (LeakCanary.isInAnalyzerProcess(this)) {//1
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
     }
 
     /**
