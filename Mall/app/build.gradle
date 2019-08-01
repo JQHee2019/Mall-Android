@@ -56,7 +56,7 @@ dependencies {
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
     // 沉浸式状态栏
     // before AndroidX
-    implementation ('com.github.niorgai:StatusBarCompat:2.1.4', {
+    implementation('com.github.niorgai:StatusBarCompat:2.1.4', {
         exclude group: 'com.android.support'
     })
 

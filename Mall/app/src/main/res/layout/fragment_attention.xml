@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pro.attention.view.AttentionFragment">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="center_horizontal"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:background="#ffffff">-->
+
+        <com.flyco.tablayout.CommonTabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#ffffff"
+            tl:tl_divider_color="#1AFFFFFF"
+            tl:tl_divider_padding="13dp"
+            tl:tl_divider_width="1dp"
+            tl:tl_indicator_color="#FFFFFF"
+            tl:tl_indicator_height="1.5dp"
+            tl:tl_tab_padding="22dp"
+            tl:tl_tab_space_equal="true"
+            tl:tl_textSelectColor="#000000"
+            tl:tl_textUnselectColor="#ff00ff"
+            tl:tl_underline_color="#ff00ff"
+            tl:tl_underline_height="2dp" />
+    <!--</LinearLayout>-->
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent" />
 
-</FrameLayout>
+
+</LinearLayout>
