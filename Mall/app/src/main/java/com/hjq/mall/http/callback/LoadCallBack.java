@@ -1,6 +1,5 @@
-package com.hjq.mall.http;
+package com.hjq.mall.http.callback;
 
-import android.app.Activity;
 import android.content.Context;
 
 import com.hjq.mall.pro.base.view.dialogs.LoadingProgressDialog;
@@ -45,23 +44,23 @@ public abstract class LoadCallBack<T> extends BaseCallBack<T> {
 
 
     @Override
-    protected void OnRequestBefore(Request request) {
+    public void OnRequestBefore(Request request) {
         showDialog();
 
     }
 
     @Override
-    protected void onFailure(Call call, IOException e) {
+    public void onFailure(Call call, IOException e) {
         hideDialog();
     }
 
     @Override
-    protected void onResponse(Response response) {
+    public void onResponse(Response response) {
         hideDialog();
     }
 
     @Override
-    protected void inProgress(int progress, long total, int id) {
+    public void inProgress(int progress, long total, int id) {
 
     }
 }

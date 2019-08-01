@@ -1,4 +1,4 @@
-package com.hjq.mall.http;
+package com.hjq.mall.http.callback;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -37,28 +37,28 @@ public abstract class FileCallBack<T> extends BaseCallBack<T> {
     }
 
     @Override
-    protected void OnRequestBefore(Request request) {
+    public void OnRequestBefore(Request request) {
         mProgressDialog.show();
     }
 
     @Override
-    protected void onFailure(Call call, IOException e) {
+    public void onFailure(Call call, IOException e) {
         hideDialog();
     }
 
     @Override
-    protected void onSuccess(Call call, Response response, T t) {
+    public void onSuccess(Call call, Response response, T t) {
         Log.e("lgz", "onSuccess: >>>>>>>>>>>>>");
         hideDialog();
     }
 
     @Override
-    protected void onEror(Call call, int statusCode, Exception e) {
+    public void onEror(Call call, int statusCode, Exception e) {
         hideDialog();
     }
 
     @Override
-    protected void inProgress(int progress, long total, int id) {
+    public void inProgress(int progress, long total, int id) {
         Log.e("lgz", "inProgress: >>>>>>>>>>>>>"+progress);
         mProgressDialog.setProgress(progress);
 

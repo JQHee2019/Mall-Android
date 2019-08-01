@@ -46,6 +46,14 @@ dependencies {
     /* Log日志打印 */
     implementation 'com.orhanobut:logger:2.2.0'
 
+    /* 状态栏 */
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
+    // 沉浸式状态栏
+    // before AndroidX
+    implementation ('com.github.niorgai:StatusBarCompat:2.1.4', {
+        exclude group: 'com.android.support'
+    })
+
     /* butterknife */
     implementation 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
@@ -94,5 +102,8 @@ dependencies {
 
     /* 分页查看查看 */
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+
+    /* 侧滑退出Activity */
+    implementation 'me.imid.swipebacklayout.lib:library:1.1.0'
 
 }

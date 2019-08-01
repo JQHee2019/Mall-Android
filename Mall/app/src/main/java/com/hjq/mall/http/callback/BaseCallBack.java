@@ -1,4 +1,4 @@
-package com.hjq.mall.http;
+package com.hjq.mall.http.callback;
 
 import com.google.gson.internal.$Gson$Types;
 
@@ -27,15 +27,15 @@ public abstract class BaseCallBack<T> {
         mType = getSuperclassTypeParameter(getClass());
     }
 
-    protected abstract void OnRequestBefore(Request request);
+    public abstract void OnRequestBefore(Request request);
 
-    protected abstract void onFailure(Call call, IOException e);
+    public abstract void onFailure(Call call, IOException e);
 
-    protected abstract void onSuccess(Call call, Response response, T t);
+    public abstract void onSuccess(Call call, Response response, T t);
 
-    protected abstract void onResponse(Response response);
+    public abstract void onResponse(Response response);
 
-    protected abstract void onEror(Call call, int statusCode, Exception e);
+    public abstract void onEror(Call call, int statusCode, Exception e);
 
-    protected abstract void inProgress(int progress, long total , int id);
+    public abstract void inProgress(int progress, long total, int id);
 }

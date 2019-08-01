@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.hjq.mall.http.Constants;
-import com.hjq.mall.http.LoadCallBack;
+import com.hjq.mall.http.callback.LoadCallBack;
 import com.hjq.mall.http.OkHttpManager;
 import com.hjq.mall.pro.base.model.BaseModel;
 

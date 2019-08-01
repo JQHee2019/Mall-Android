@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.hjq.mall.bean.PostsListBean;
-import com.hjq.mall.http.LoadCallBack;
+import com.hjq.mall.http.callback.LoadCallBack;
 import com.hjq.mall.pro.base.presenter.BasePresenter;
 import com.hjq.mall.pro.essence.model.EssenceVideoModel;
 
@@ -37,7 +37,7 @@ public class EssenceVideoPresenter extends BasePresenter<EssenceVideoModel> {
 
         LoadCallBack callBack = new LoadCallBack<String>(getContext()) {
             @Override
-            protected void onSuccess(Call call, Response response, String result) {
+            public void onSuccess(Call call, Response response, String result) {
                 if (TextUtils.isEmpty(result)){
                     //等于空---通知UI线程---刷新UI界面
                     onUIThreadListener.onSuccess(null);
@@ -62,7 +62,7 @@ public class EssenceVideoPresenter extends BasePresenter<EssenceVideoModel> {
             }
 
             @Override
-            protected void onEror(Call call, int statusCode, Exception e) {
+            public void onEror(Call call, int statusCode, Exception e) {
                 onUIThreadListener.onError(null);
             }
         };

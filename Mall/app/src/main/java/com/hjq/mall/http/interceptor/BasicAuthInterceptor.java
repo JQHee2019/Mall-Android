@@ -1,4 +1,4 @@
-package com.hjq.mall.http;
+package com.hjq.mall.http.interceptor;
 import java.io.IOException;
 import okhttp3.Credentials;
 import okhttp3.Interceptor;

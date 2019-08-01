@@ -4,8 +4,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+import com.hjq.mall.http.callback.BaseCallBack;
+import com.hjq.mall.http.interceptor.HeaderInterceptor;
+import com.hjq.mall.http.interceptor.TokenInterceptor;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -45,6 +47,8 @@ public class OkHttpManager {
                 .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS);
         // mGson = new Gson();
+        mOkHttpClient.newBuilder().addInterceptor(new HeaderInterceptor());
+        // mOkHttpClient.newBuilder().addInterceptor(new TokenInterceptor());
 
         handler = new Handler(Looper.getMainLooper());
     }

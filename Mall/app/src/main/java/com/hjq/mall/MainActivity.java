@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
 
     private List<TabItem> tabItemList;
 
+    private long lastBackPressTime = -1L;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,17 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
         //由于Java面向对象的语言(OO设计)
         initTabData();
         initTabHost();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        long currentTIme = System.currentTimeMillis();
+        if(lastBackPressTime == -1L || currentTIme - lastBackPressTime >= 2000){
+            ToastUtil.showToast(this, "再按一次退出");
+        } else {
+            finish();
+        }
     }
 
     //初始化Tab数据
