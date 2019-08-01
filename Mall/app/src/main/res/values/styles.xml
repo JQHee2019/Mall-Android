@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="myThemeStyle">@style/themeStyle</item>
     </style>
 
     <style name="LoadingProgressDialog" parent="@android:style/Theme.Dialog">
@@ -24,6 +25,12 @@
         <item name="android:backgroundDimAmount">0.2</item>
         <!-- 是否模糊 -->
         <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <!--actionsheet-->
+    <style name="themeStyle">
+        <item name="textColor">#abcd12</item>
+        <item name="textSize">5sp</item>
     </style>
 
 </resources>
