@@ -82,7 +82,7 @@ public class ActionSheetFragment extends Fragment {
             manager.hideSoftInputFromWindow(focusView.getWindowToken(), 0);
         }
 
-        realView=inflater.inflate(R.layout.fragment_actionshett_layout, container, false);
+        realView=inflater.inflate(R.layout.fragment_actionsheet_layout, container, false);
         initViews(realView);
         decorView=getActivity().getWindow().getDecorView();
         ((ViewGroup) decorView).addView(realView);

@@ -14,7 +14,8 @@ x9、屏幕适配
 √10、沉浸式状态栏
 √11、侧滑返回
 √12、在MainActivity联系点击两次退出应用
-x13、webview
+√13、webview和设置进度条
 x14、eventbus 切线程
 √15、富文本工具
 x16、greendao
+√17、拨打电话
