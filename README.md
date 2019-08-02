@@ -20,3 +20,7 @@ x14、eventbus 切线程
 x16、greendao
 √17、拨打电话
 √18、内存泄漏LeakCanary
+
+
+##### 破解
+- 网址 https://www.androiddevtools.cn 下载androidkiller

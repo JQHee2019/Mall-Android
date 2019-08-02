@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.hjq.mall.http.callback.BaseCallBack;
 import com.hjq.mall.http.interceptor.HeaderInterceptor;
@@ -36,7 +37,7 @@ public class OkHttpManager {
 
     private OkHttpClient mOkHttpClient;
 
-    // private Gson mGson;
+    private Gson mGson;
 
     private Handler handler;
 
@@ -46,7 +47,7 @@ public class OkHttpManager {
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS);
-        // mGson = new Gson();
+        mGson = new Gson();
         mOkHttpClient.newBuilder().addInterceptor(new HeaderInterceptor());
         // mOkHttpClient.newBuilder().addInterceptor(new TokenInterceptor());
 
@@ -282,9 +283,9 @@ public class OkHttpManager {
                         callBackSuccess(callBack, call, response, result);
                     } else {
                         try {
-                            // Object object = mGson.fromJson(result, callBack.mType);//自动转化为 泛型对象
-                            // callBackSuccess(callBack, call, response, object);
-                            callBackSuccess(callBack, call, response, result);
+                            Object object = mGson.fromJson(result, callBack.mType);//自动转化为 泛型对象
+                            callBackSuccess(callBack, call, response, object);
+                            // callBackSuccess(callBack, call, response, result);
                         } catch (JsonParseException e) {
                             //json解析错误时调用
                             callBack.onEror(call, response.code(), e);
