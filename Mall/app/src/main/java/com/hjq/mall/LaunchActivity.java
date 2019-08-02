@@ -24,8 +24,9 @@ public class LaunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
 
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         // fullScreen(this);
-        hideBottomUIMenu();
+        // hideBottomUIMenu();
 
         // 你们平时做启动页
         // 总结：
@@ -135,7 +136,8 @@ public class LaunchActivity extends AppCompatActivity {
                     | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
                     | View.SYSTEM_UI_FLAG_IMMERSIVE;
             decorView.setSystemUiVisibility(uiOptions);
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            // 虚拟导航设置为半透明
+            // getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
     }
 

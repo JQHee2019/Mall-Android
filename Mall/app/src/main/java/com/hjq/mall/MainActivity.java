@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
         setContentView(R.layout.activity_main);
 
         StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimaryDark), 127);
+        // getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
         //由于Java面向对象的语言(OO设计)
         initTabData();
