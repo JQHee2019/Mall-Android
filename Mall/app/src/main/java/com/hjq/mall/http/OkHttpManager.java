@@ -6,9 +6,8 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
-import com.hjq.mall.http.callback.BaseCallBack;
+import com.hjq.mall.http.callback.HttpBaseCallBack;
 import com.hjq.mall.http.interceptor.HeaderInterceptor;
-import com.hjq.mall.http.interceptor.TokenInterceptor;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -71,7 +70,7 @@ public class OkHttpManager {
      * @url 请求链接
      * @callBack 请求回调
      **/
-    public void get(String url, final BaseCallBack callBack) {
+    public void get(String url, final HttpBaseCallBack callBack) {
         Request request = buildRequest(url, null, HttpMethodType.GET);
         doRequest(request, callBack);
     }
@@ -82,7 +81,7 @@ public class OkHttpManager {
      * @params 请求参数
      * @callBack 请求回调
      **/
-    public void post(String url, final BaseCallBack callBack, Map<String, String> params) {
+    public void post(String url, final HttpBaseCallBack callBack, Map<String, String> params) {
         Request request = buildRequest(url, params, HttpMethodType.POST);
         doRequest(request, callBack);
     }
@@ -91,7 +90,7 @@ public class OkHttpManager {
      * async POST 上传单个文件
      * @callBack 请求回调
      **/
-    public void uploadFile(String url, final BaseCallBack callback, File file, String fileKey, Map<String, String> params) {
+    public void uploadFile(String url, final HttpBaseCallBack callback, File file, String fileKey, Map<String, String> params) {
         Param[] paramsArr = fromMapToParams(params);
 
         try {
@@ -106,7 +105,7 @@ public class OkHttpManager {
      * async POST 上传多个文件
      * @callBack 请求回调
      **/
-    public void uploadFiles(String url, final BaseCallBack callback, File[] files, String[] fileKeys, Map<String, String> params) {
+    public void uploadFiles(String url, final HttpBaseCallBack callback, File[] files, String[] fileKeys, Map<String, String> params) {
         Param[] paramsArr = fromMapToParams(params);
 
         try {
@@ -121,7 +120,7 @@ public class OkHttpManager {
      * async 下载文件
      * @callBack 请求回调
      **/
-    public void downloadFile(final String url, final String destFileDir, final BaseCallBack callBack) {
+    public void downloadFile(final String url, final String destFileDir, final HttpBaseCallBack callBack) {
         final Request request = buildRequest(url, null, HttpMethodType.GET);
         callBack.OnRequestBefore(request);  //提示加载框
         mOkHttpClient.newCall(request).enqueue(new Callback() {
@@ -193,19 +192,19 @@ public class OkHttpManager {
      * 对内方法
      ************************/
     //单个文件上传请求  不带参数
-    private void postAsyn(String url, BaseCallBack callback, File file, String fileKey) throws IOException {
+    private void postAsyn(String url, HttpBaseCallBack callback, File file, String fileKey) throws IOException {
         Request request = buildMultipartFormRequest(url, new File[]{file}, new String[]{fileKey}, null);
         doRequest(request, callback);
     }
 
     //单个文件上传请求 带参数
-    private void postAsyn(String url, BaseCallBack callback, File file, String fileKey, Param... params) throws IOException {
+    private void postAsyn(String url, HttpBaseCallBack callback, File file, String fileKey, Param... params) throws IOException {
         Request request = buildMultipartFormRequest(url, new File[]{file}, new String[]{fileKey}, params);
         doRequest(request, callback);
     }
 
     //多个文件上传请求 带参数
-    private void postAsyn(String url, BaseCallBack callback, File[] files, String[] fileKeys, Param... params) throws IOException {
+    private void postAsyn(String url, HttpBaseCallBack callback, File[] files, String[] fileKeys, Param... params) throws IOException {
         Request request = buildMultipartFormRequest(url, files, fileKeys, params);
         doRequest(request, callback);
     }
@@ -265,7 +264,7 @@ public class OkHttpManager {
     }
 
     //去进行网络 异步 请求
-    private void doRequest(Request request, final BaseCallBack callBack) {
+    private void doRequest(Request request, final HttpBaseCallBack callBack) {
         callBack.OnRequestBefore(request);
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
@@ -333,7 +332,7 @@ public class OkHttpManager {
         return builder.build();
     }
 
-    private void callBackSuccess(final BaseCallBack callBack, final Call call, final Response response, final Object object) {
+    private void callBackSuccess(final HttpBaseCallBack callBack, final Call call, final Response response, final Object object) {
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -342,7 +341,7 @@ public class OkHttpManager {
         });
     }
 
-    private void callBackError(final BaseCallBack callBack, final Call call, final int code) {
+    private void callBackError(final HttpBaseCallBack callBack, final Call call, final int code) {
         handler.post(new Runnable() {
             @Override
             public void run() {

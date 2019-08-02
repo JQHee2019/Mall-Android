@@ -3,7 +3,7 @@ package com.hjq.mall.http;
 /**
 * 接口
 */
-public class Constants {
+public class HttpConstants {
 
     // 基本链接
     public static String baseURL = "http://api.budejie.com";

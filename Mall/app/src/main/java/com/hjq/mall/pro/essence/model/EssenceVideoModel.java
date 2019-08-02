@@ -3,8 +3,8 @@ package com.hjq.mall.pro.essence.model;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.hjq.mall.http.Constants;
-import com.hjq.mall.http.callback.LoadCallBack;
+import com.hjq.mall.http.HttpConstants;
+import com.hjq.mall.http.callback.HttpLoadCallBack;
 import com.hjq.mall.http.OkHttpManager;
 import com.hjq.mall.pro.base.model.BaseModel;
 
@@ -24,7 +24,7 @@ public class EssenceVideoModel extends BaseModel {
      * @param maxtime--用户加载更多
      * @param callBack---数据回调监听
      */
-    public void getEssenceList(int type, int page, String maxtime, LoadCallBack callBack){
+    public void getEssenceList(int type, int page, String maxtime, HttpLoadCallBack callBack){
         Map<String, String> requestParam = new HashMap<String, String>();
         requestParam.put("a","list");
         requestParam.put("c","data");
@@ -33,7 +33,7 @@ public class EssenceVideoModel extends BaseModel {
         if (!TextUtils.isEmpty(maxtime)){
             requestParam.put("maxtime",maxtime);
         }
-        OkHttpManager.getInstance().post(Constants.essence, callBack, requestParam);
+        OkHttpManager.getInstance().post(HttpConstants.essence, callBack, requestParam);
     }
 
 }

@@ -22,6 +22,7 @@
     <color name="item_build_default_press">#F6F6F6</color>
 
     <color name="alpha_80_black">#CC000000</color>
+    <color name="toast_text_white">#FFFFFF</color>
 
 
 </resources>

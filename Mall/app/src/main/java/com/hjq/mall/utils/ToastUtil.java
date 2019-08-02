@@ -2,9 +2,12 @@ package com.hjq.mall.utils;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Looper;
 import android.view.Gravity;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.hjq.mall.R;
 
 /**
  * 在任何线程下都可以使用toast
@@ -89,10 +92,18 @@ public class ToastUtil {
 	private static Toast getToast(final Context context, String text, int duration) {
         if (toast == null) {
             toast = Toast.makeText(context, text, duration);
+            LinearLayout linearLayout = (LinearLayout) toast.getView();
+			linearLayout.setBackgroundColor(context.getResources().getColor(R.color.alpha_80_black));
+            TextView messageTextView = (TextView) linearLayout.getChildAt(0);
+            // messageTextView.setTextSize(25);
+			messageTextView.setTextColor(context.getResources().getColor(R.color.toast_text_white));
+			toast.setView(linearLayout);
+
         } else {
             toast.setText(text);
-            toast.setDuration(Toast.LENGTH_SHORT);
+            toast.setDuration(duration);
         }
+		toast.setGravity(Gravity.CENTER, 0, 0);
         return toast;
     }
 }

@@ -12,13 +12,13 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 //添加对请求时对话框的处理
-public abstract class LoadCallBack<T> extends BaseCallBack<T> {
+public abstract class HttpLoadCallBack<T> extends HttpBaseCallBack<T> {
 
     private Context context;
     private String message;
     private boolean isCancelable;
 
-    public LoadCallBack(Context context) {
+    public HttpLoadCallBack(Context context) {
         this.context = context;
     }
 

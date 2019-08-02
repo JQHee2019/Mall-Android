@@ -11,13 +11,13 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
-public abstract class FileCallBack<T> extends BaseCallBack<T> {
+public abstract class HttpFileCallBack<T> extends HttpBaseCallBack<T> {
 
     private Context mContext;
 
     private ProgressDialog mProgressDialog;
 
-    public FileCallBack(Context context) {
+    public HttpFileCallBack(Context context) {
         mContext = context;
         initDialog();
     }

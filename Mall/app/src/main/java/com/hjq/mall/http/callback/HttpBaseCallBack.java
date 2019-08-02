@@ -10,7 +10,7 @@ import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public abstract class BaseCallBack<T> {
+public abstract class HttpBaseCallBack<T> {
     public Type mType;
 
     static Type getSuperclassTypeParameter(Class<?> subclass) {
@@ -23,7 +23,7 @@ public abstract class BaseCallBack<T> {
     }
 
 
-    public BaseCallBack() {
+    public HttpBaseCallBack() {
         mType = getSuperclassTypeParameter(getClass());
     }
 

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.hjq.mall.bean.PostsListBean;
-import com.hjq.mall.http.callback.LoadCallBack;
+import com.hjq.mall.http.callback.HttpLoadCallBack;
 import com.hjq.mall.pro.base.presenter.BasePresenter;
 import com.hjq.mall.pro.essence.model.EssenceVideoModel;
 
@@ -35,7 +35,7 @@ public class EssenceVideoPresenter extends BasePresenter<EssenceVideoModel> {
             maxtime = null;
         }
 
-        LoadCallBack callBack = new LoadCallBack<String>(getContext()) {
+        HttpLoadCallBack callBack = new HttpLoadCallBack<String>(getContext()) {
             @Override
             public void onSuccess(Call call, Response response, String result) {
                 if (TextUtils.isEmpty(result)){
