@@ -21,6 +21,9 @@
     <!--拨打电话的权限-->
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
+    <!--8.0apk安装权限-->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+
     <application
         android:name=".App"
         android:networkSecurityConfig="@xml/network_security_config"
@@ -30,6 +33,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.betiger.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">  <!--false表示我们的provider不需要对外开放-->
+            <!--元数据-->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
         <meta-data android:name="android.max_aspect"
             android:value="2.1" />
