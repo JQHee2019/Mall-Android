@@ -31,6 +31,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity  implements TabHost.OnTabChangeListener {
 
     private List<TabItem> tabItemList;
+    private FragmentTabHost fragmentTabHost;
+    private int currentSelect = 0;
 
     private long lastBackPressTime = -1L;
 
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
     //初始化主页选项卡视图
     private void initTabHost(){
         //获取FragmentTabHost
-        FragmentTabHost fragmentTabHost = (FragmentTabHost)findViewById(android.R.id.tabhost);
+        fragmentTabHost = (FragmentTabHost)findViewById(android.R.id.tabhost);
         //绑定TabHost(绑定我们的body)
         fragmentTabHost.setup(this,getSupportFragmentManager(),android.R.id.tabcontent);
         //去掉分割线
@@ -117,8 +119,15 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
         for (int i = 0;i < lenght; i++){
             TabItem tabItem = tabItemList.get(i);
             if (tabId.equals(tabItem.getTitleString())){
+                if(TextUtils.isEmpty(tabId)) {
+                    fragmentTabHost.setCurrentTab(currentSelect);
+                    tabItem.setChecked(false);
+                    return;
+                }
+                currentSelect = i;
                 //选中设置为选中壮体啊
                 tabItem.setChecked(true);
+
             }else {
                 //没有选择Tab样式设置为正常
                 tabItem.setChecked(false);

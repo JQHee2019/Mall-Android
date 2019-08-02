@@ -21,6 +21,7 @@ public class ToastUtil {
                 toast.setText(text);
                 toast.setDuration(duration);
             }
+            toast.show();
 		} else {
 			((Activity) context).runOnUiThread(new Runnable() {
 				@Override
@@ -31,6 +32,7 @@ public class ToastUtil {
                         toast.setText(text);
                         toast.setDuration(duration);
                     }
+                    toast.show();
 				}
 			});
 		}
@@ -46,6 +48,7 @@ public class ToastUtil {
                 toast.setText(text);
                 toast.setDuration(Toast.LENGTH_SHORT);
             }
+            toast.show();
 		} else {
 			((Activity) context).runOnUiThread(new Runnable() {
 				@Override
@@ -56,6 +59,7 @@ public class ToastUtil {
                         toast.setText(text);
                         toast.setDuration(Toast.LENGTH_SHORT);
                     }
+                    toast.show();
 				}
 			});
 		}
