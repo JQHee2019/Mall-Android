@@ -125,4 +125,7 @@ dependencies {
     /* 侧滑退出Activity */
     implementation 'me.imid.swipebacklayout.lib:library:1.1.0'
 
+    /* 多状态 */
+    implementation 'com.classic.common:multiple-status-view:1.6'
+
 }

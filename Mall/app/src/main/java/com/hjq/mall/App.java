@@ -7,6 +7,7 @@ import android.support.multidex.MultiDex;
 import com.hjq.mall.utils.LoggerUtil;
 import com.squareup.leakcanary.LeakCanary;
 
+
 public class App extends Application {
 
     private static App instance;
@@ -37,6 +38,7 @@ public class App extends Application {
         }
         LeakCanary.install(this);
     }
+
 
     /**
      * 解决 使得这个dex的方法数量被限制在65535之内保错问题

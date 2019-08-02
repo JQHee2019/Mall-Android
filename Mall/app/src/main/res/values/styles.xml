@@ -9,6 +9,11 @@
         <item name="myThemeStyle">@style/themeStyle</item>
     </style>
 
+    <style name="SplashActivityTheme" parent="android:Theme.Holo.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@drawable/splash_bacground</item>
+    </style>
+
     <style name="LoadingProgressDialog" parent="@android:style/Theme.Dialog">
         <!-- Dialog的windowFrame框为无 -->
         <item name="android:windowFrame">@null</item>
