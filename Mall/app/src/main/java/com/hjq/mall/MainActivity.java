@@ -24,6 +24,7 @@ import com.hjq.mall.pro.mine.view.MineFragment;
 import com.hjq.mall.pro.newpost.view.NewpostFragment;
 import com.hjq.mall.pro.publish.view.PublishFragment;
 import com.hjq.mall.utils.ToastUtil;
+import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,9 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimaryDark), 127);
+
         //由于Java面向对象的语言(OO设计)
         initTabData();
         initTabHost();

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@android:color/white" />
+    <item>
+        <bitmap
+            android:gravity="bottom"
+            android:scaleType="centerCrop"
+            android:src="@drawable/splash_bacground"
+            android:tileMode="disabled" />
+    </item>
+</layer-list>
+
+<!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--&lt;!&ndash; 背景颜色 &ndash;&gt;-->
+<!--<item android:drawable="@android:color/white" />-->
+
+<!--&lt;!&ndash;注意此处的bottom要和activity_splash.xml中的logo图marginBottom的值保持一致&ndash;&gt;-->
+<!--<item android:bottom="40dp">-->
+    <!--&lt;!&ndash; 图片 &ndash;&gt;-->
+    <!--<bitmap-->
+        <!--android:gravity="center|bottom"-->
+        <!--android:src="@drawable/splash_logo" />-->
+<!--</item>-->
+<!--</layer-list>-->

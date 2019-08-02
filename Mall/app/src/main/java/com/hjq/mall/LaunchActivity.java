@@ -3,10 +3,19 @@ package com.hjq.mall;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowInsets;
+import android.view.WindowManager;
 
 public class LaunchActivity extends AppCompatActivity {
 
@@ -14,6 +23,10 @@ public class LaunchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
+
+        // fullScreen(this);
+        hideBottomUIMenu();
+
         // 你们平时做启动页
         // 总结：
         // 有四种解决方案（企业级开发主要就是这四种方案）
@@ -54,4 +67,76 @@ public class LaunchActivity extends AppCompatActivity {
             }
         });
     }
+
+    /*
+     * @param activity
+     */
+    private void fullScreen(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+
+            /*
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Window window = getWindow();
+                View decorView = window.getDecorView();
+                decorView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+                    @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
+                    @Override
+                    public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
+                        WindowInsets defaultInsets = v.onApplyWindowInsets(insets);
+                        return defaultInsets.replaceSystemWindowInsets(
+                                defaultInsets.getSystemWindowInsetLeft(),
+                                0,
+                                defaultInsets.getSystemWindowInsetRight(),
+                                defaultInsets.getSystemWindowInsetBottom());
+                    }
+                });
+                ViewCompat.requestApplyInsets(decorView);
+                //将状态栏设成透明，如不想透明可设置其他颜色
+                window.setStatusBarColor(ContextCompat.getColor(this, android.R.color.transparent));
+            }
+            //全屏显示
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            // 设置底部导航栏不会遮挡布局
+            // getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            */
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                //5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色
+                Window window = activity.getWindow();
+                View decorView = window.getDecorView();
+                //两个 flag 要结合使用，表示让应用的主体内容占用系统状态栏的空间
+                int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+                decorView.setSystemUiVisibility(option);
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(Color.TRANSPARENT);
+            } else {
+                Window window = activity.getWindow();
+                WindowManager.LayoutParams attributes = window.getAttributes();
+                int flagTranslucentStatus = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+                int flagTranslucentNavigation = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION;
+                attributes.flags |= flagTranslucentStatus;
+                window.setAttributes(attributes);
+            }
+        }
+    }
+
+    /**
+     * 隐藏虚拟按键，并且设置成全屏
+     */
+    protected void hideBottomUIMenu() {
+        if (Build.VERSION.SDK_INT >= 19) {
+            //for new api versions.
+            View decorView = getWindow().getDecorView();
+            int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE;
+            decorView.setSystemUiVisibility(uiOptions);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
+    }
+
 }

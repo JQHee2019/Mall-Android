@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    android:id="@+id/iv_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LaunchActivity">
-    
-    <ImageView
-        android:id="@+id/iv_bg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/app_name"
-        android:background="@drawable/splash_bacground"/>
+    android:background="@drawable/splash_bacground"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_bg"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:contentDescription="@string/app_name"-->
+        <!--android:background="@drawable/splash_bacground"/>-->
+
+</LinearLayout>
