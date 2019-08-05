@@ -7,7 +7,10 @@
     <color name="color333">#333333</color>
     <color name="color666">#666666</color>
     <color name="color999">#999999</color>
-    <color name="colorddd">#DDD</color>
+    <color name="colorDDD">#DDD</color>
+    <color name="colorFFF">@android:color/white</color>
+    <color name="color000">#000000</color>
+    <color name="color_background">#F1F1F1</color>
 
     <color name="main_bottom_text_normal">#ff847d7b</color>
     <color name="main_bottom_text_select">#ff333333</color>
@@ -20,7 +23,6 @@
     <color name="login_text_color">@android:color/white</color>
     <color name="login_button_color_normal">#DE6262</color>
     <color name="login_button_color_press">#DD5858</color>
-
 
     <color name="item_mine_text_color">#707070</color>
     <color name="item_build_default_normal">@android:color/white</color>
