@@ -128,4 +128,7 @@ dependencies {
     /* 多状态 https://github.com/Hankkin/PageLayoutDemojava*/
     implementation 'com.classic.common:multiple-status-view:1.6'
 
+    /* 通用的广告轮播 */
+    implementation 'com.bigkoo:ConvenientBanner:2.1.4'
+
 }
