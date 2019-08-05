@@ -8,7 +8,7 @@
     <color name="color666">#666666</color>
     <color name="color999">#999999</color>
     <color name="colorDDD">#DDD</color>
-    <color name="colorFFF">@android:color/white</color>
+    <color name="colorFFF">#FFFFFF</color>
     <color name="color000">#000000</color>
     <color name="color_background">#F1F1F1</color>
 
