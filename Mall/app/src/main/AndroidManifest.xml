@@ -24,7 +24,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".pro.guide.view.GuideActivity"></activity>
+        <activity android:name=".pro.meituan.view.MeituanActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".pro.guide.view.GuideActivity" />
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".LaunchActivity"
+            android:hardwareAccelerated="false"
+            android:theme="@style/SplashActivityTheme">
+
+        </activity>
+
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4" /> <!-- 华为手机刘海屏 -->
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" /> <!-- 小米手机刘海屏 -->
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -37,27 +61,6 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <meta-data
-            android:name="android.max_aspect"
-            android:value="2.4" /> <!-- 华为手机刘海屏 -->
-        <meta-data
-            android:name="android.notch_support"
-            android:value="true" /> <!-- 小米手机刘海屏 -->
-        <meta-data
-            android:name="notch.config"
-            android:value="portrait|landscape" />
-
-        <activity android:name=".MainActivity" />
-        <activity
-            android:name=".LaunchActivity"
-            android:hardwareAccelerated="false"
-            android:theme="@style/SplashActivityTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
