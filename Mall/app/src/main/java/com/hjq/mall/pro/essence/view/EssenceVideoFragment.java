@@ -1,18 +1,13 @@
 package com.hjq.mall.pro.essence.view;
 
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.hjq.mall.R;
-import com.hjq.mall.bean.PostsListBean;
+import com.hjq.mall.bean.essence.PostsListBean;
 import com.hjq.mall.mvp.presenter.impl.MvpBasePresenter;
 import com.hjq.mall.pro.base.BaseFragment;
 import com.hjq.mall.pro.base.presenter.BasePresenter;

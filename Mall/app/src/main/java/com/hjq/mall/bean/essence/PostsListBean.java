@@ -1,4 +1,4 @@
-package com.hjq.mall.bean;
+package com.hjq.mall.bean.essence;
 
 import java.util.List;
 

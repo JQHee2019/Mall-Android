@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hjq.mall.R;
-import com.hjq.mall.bean.PostsListBean;
+import com.hjq.mall.bean.essence.PostsListBean;
 import com.hjq.mall.utils.DateUtils;
 
 import java.util.List;

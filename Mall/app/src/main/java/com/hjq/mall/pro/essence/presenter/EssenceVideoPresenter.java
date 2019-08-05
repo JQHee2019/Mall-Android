@@ -3,7 +3,7 @@ package com.hjq.mall.pro.essence.presenter;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.hjq.mall.bean.PostsListBean;
+import com.hjq.mall.bean.essence.PostsListBean;
 import com.hjq.mall.http.callback.HttpLoadCallBack;
 import com.hjq.mall.pro.base.presenter.BasePresenter;
 import com.hjq.mall.pro.essence.model.EssenceVideoModel;

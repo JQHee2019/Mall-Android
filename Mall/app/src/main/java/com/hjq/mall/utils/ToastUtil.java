@@ -92,12 +92,15 @@ public class ToastUtil {
 	private static Toast getToast(final Context context, String text, int duration) {
         if (toast == null) {
             toast = Toast.makeText(context, text, duration);
+            /*
             LinearLayout linearLayout = (LinearLayout) toast.getView();
+			// linearLayout.setBackground(context.getResources().getDrawable(R.drawable.shape_toast_background));
 			linearLayout.setBackgroundColor(context.getResources().getColor(R.color.alpha_80_black));
             TextView messageTextView = (TextView) linearLayout.getChildAt(0);
             // messageTextView.setTextSize(25);
 			messageTextView.setTextColor(context.getResources().getColor(R.color.toast_text_white));
 			toast.setView(linearLayout);
+			*/
 
         } else {
             toast.setText(text);
