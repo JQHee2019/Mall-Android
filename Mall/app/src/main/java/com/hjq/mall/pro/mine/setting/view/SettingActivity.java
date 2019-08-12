@@ -33,8 +33,13 @@ public class SettingActivity extends BaseActivtiy {
         mLogoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showLogoutAlert();
+                // showLogoutAlert();
             }
+        });
+
+        // Lambda 写法
+        mLogoutBtn.setOnClickListener((view) -> {
+            showLogoutAlert();
         });
 
     }
