@@ -33,6 +33,15 @@ public abstract class BaseActivtiy<P extends MvpBasePresenter> extends MvpActivi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (getLayout() instanceof Integer) {
+            setContentView((Integer) getLayout());
+        } else if (getLayout() instanceof  View) {
+            setContentView((View) getLayout());
+        } else {
+            throw new ClassCastException("getLayout() type must be int or View");
+        }
+        // 绑定必须要初始化View
         mUnBinder = ButterKnife.bind(this);
         if (isRegisterEventBus()) {//注册EventBus
             EventBusUtil.register(this);
@@ -49,6 +58,8 @@ public abstract class BaseActivtiy<P extends MvpBasePresenter> extends MvpActivi
             EventBusUtil.unregister(this);
         }
     }
+
+    protected abstract Object getLayout();
 
     /**
      * 点击空白区域隐藏键盘.

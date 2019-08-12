@@ -12,6 +12,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.hjq.mall.R;
 import com.hjq.mall.mvp.presenter.impl.MvpBasePresenter;
 import com.hjq.mall.pro.base.BaseFragment;
+import com.hjq.mall.pro.base.view.navigation.CommonNavigationBuilder;
 import com.hjq.mall.pro.essence.view.adapter.EssenceAdapter;
 import com.hjq.mall.pro.essence.view.navigation.EssenceNavigationBuilder;
 
@@ -54,23 +55,29 @@ public class EssenceFragment extends BaseFragment {
     }
 
     private void initToolBar(View viewContent){
+
         EssenceNavigationBuilder builder = new EssenceNavigationBuilder(getContext());
-        builder.setTitleIcon(R.drawable.main_essence_title)
-                .setLeftIcon(R.drawable.main_essence_btn_selector)
-                .setRightIcon(R.drawable.main_essence_btn_more_selector)
-                .setLeftIconOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ToastUtils.showShort("点击了");
-                    }
-                })
-                .setRightIconOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ToastUtils.showShort("点击了");
-                    }
-                });
         builder.createAndBind((ViewGroup) viewContent);
+        builder.setImageViewStyle(R.id.iv_title, R.drawable.main_essence_title, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showShort("中间点击了");
+            }
+        });
+        builder.setImageViewStyle(R.id.iv_left, R.drawable.main_essence_btn_selector, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showShort("左边点击了");
+            }
+        });
+
+        builder .setImageViewStyle(R.id.iv_right, R.drawable.main_essence_btn_more_selector, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showShort("右边点击了");
+            }
+        });
+
     }
 
 }

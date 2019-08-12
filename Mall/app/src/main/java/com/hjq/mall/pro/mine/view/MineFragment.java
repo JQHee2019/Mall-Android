@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.hjq.mall.R;
 import com.hjq.mall.bean.mine.MineBean;
 import com.hjq.mall.bean.mine.MineItemType;
@@ -25,7 +26,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MineFragment extends BaseFragment {
+public class MineFragment extends BaseFragment implements View.OnClickListener {
 
     private RecyclerView recyclerView;
     private ImageView avatarImageView;
@@ -43,24 +44,8 @@ public class MineFragment extends BaseFragment {
         avatarImageView = viewContent.findViewById(R.id.iv_avatar);
         userNameTextView = viewContent.findViewById(R.id.tv_user_name);
 
-        final MineBean logisticsBean = new MineBean.Builder()
-                .setItemType(MineItemType.ITEM_NORMAL)
-                .setText("我的物流")
-                .build();
-
-        final MineBean lineBean = new MineBean.Builder()
-                .setItemType(MineItemType.ITEM_LINE)
-                .build();
-
-        final MineBean settingBean = new MineBean.Builder()
-                .setItemType(MineItemType.ITEM_NORMAL)
-                .setText("设置")
-                .build();
-
-        datas.add(logisticsBean);
-        datas.add(lineBean);
-        datas.add(settingBean);
-
+        avatarImageView.setOnClickListener(this);
+        userNameTextView.setOnClickListener(this);
 
         // 设置RecyclerView
         // 设置显示的布局
@@ -73,7 +58,34 @@ public class MineFragment extends BaseFragment {
     }
 
     @Override
+    public void initData() {
+        final MineBean logisticsBean = new MineBean.Builder()
+                .setItemType(MineItemType.ITEM_NORMAL)
+                .setText("我的物流")
+                .build();
+
+        final MineBean lineBean = new MineBean.Builder()
+                .setItemType(MineItemType.ITEM_LINE)
+                .build();
+
+        final MineBean settingBean = new MineBean.Builder()
+                .setId(2)
+                .setItemType(MineItemType.ITEM_NORMAL)
+                .setText("设置")
+                .build();
+
+        datas.add(logisticsBean);
+        datas.add(lineBean);
+        datas.add(settingBean);
+    }
+
+    @Override
     public MvpBasePresenter bindPresenter() {
         return null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        ToastUtils.showShort("头像点击");
     }
 }

@@ -24,9 +24,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".pro.meituan.view.MeituanActivity">
-
-        </activity>
+        <activity android:name=".pro.mine.mylogistics.view.MyLogisticsActivity"></activity>
+        <activity android:name=".pro.mine.setting.view.SettingActivity" />
+        <activity android:name=".pro.meituan.view.MeituanActivity" />
         <activity android:name=".pro.guide.view.GuideActivity" />
         <activity android:name=".MainActivity" />
         <activity
@@ -60,7 +60,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>

@@ -2,12 +2,14 @@ package com.hjq.mall.pro.mine.view.listener;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.hjq.mall.bean.mine.MineBean;
+import com.hjq.mall.pro.mine.setting.view.SettingActivity;
 
 public class MineClickListener  extends SimpleClickListener {
 
@@ -25,7 +27,9 @@ public class MineClickListener  extends SimpleClickListener {
         switch (id) {
             case 1:
                 break;
-            case 2:
+            case 2: // 设置
+                final Intent intent = new Intent(mContext, SettingActivity.class);
+                mContext.startActivity(intent);
                 break;
             default:
                 break;
