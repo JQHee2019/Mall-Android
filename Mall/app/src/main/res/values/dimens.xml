@@ -21,4 +21,5 @@
     <dimen name="text_size_18_sp">18sp</dimen>
 
     <dimen name="item_essence_name_size">15sp</dimen>
+    <dimen name="app_submit_button_height">45dp</dimen>
 </resources>
