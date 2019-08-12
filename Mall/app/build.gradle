@@ -131,4 +131,6 @@ dependencies {
     /* 通用的广告轮播 */
     implementation 'com.bigkoo:ConvenientBanner:2.1.4'
 
+    implementation 'com.bigkoo:alertview:1.0.3'
+
 }
