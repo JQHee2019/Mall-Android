@@ -28,7 +28,7 @@ public class SettingActivity extends BaseActivtiy {
     }
 
     private void initView() {
-        initToolBar(getWindow().getDecorView().findViewById(R.id.fl_toolbar));
+        initToolBar(getWindow().getDecorView().findViewById(R.id.fl_layout));
         mLogoutBtn = findViewById(R.id.btn_logout);
         mLogoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
