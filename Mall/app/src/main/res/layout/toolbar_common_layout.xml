@@ -26,7 +26,7 @@
         android:layout_marginRight="37dp"
         android:layout_marginLeft="37dp"
         android:text="标题"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_size_18_sp"
         android:textColor="@color/colorFFF"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -35,7 +35,7 @@ public class SettingActivity extends BaseActivtiy {
     private void initToolBar(View viewContent){
         final CommonNavigationBuilder builder = new CommonNavigationBuilder(this);
         builder.createAndBind((ViewGroup) viewContent);
-        builder.setTitleTextView(R.id.iv_title, "设置1");
+        builder.setTitleTextView(R.id.iv_title, getString(R.string.navigation_title_setting));
         builder .setImageViewStyle(R.id.iv_left, R.mipmap.ic_launcher, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
