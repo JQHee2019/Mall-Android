@@ -10,6 +10,8 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
+import com.blankj.utilcode.util.ToastUtils;
+
 public final class CallUtil {
 
     /**
@@ -51,7 +53,7 @@ public final class CallUtil {
                 //如果设备策略禁止应用拥有这条权限, 这个方法也返回false.
                 // 弹窗需要解释为何需要该权限，再次请求授权
                 // Toast.makeText(Your Activity, "请授权！", Toast.LENGTH_LONG).show();
-                ToastUtil.showToast(activity, "请授权！");
+                ToastUtils.showShort("请授权！");
                 // 帮跳转到该应用的设置界面，让用户手动授权
                 Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                 Uri uri = Uri.fromParts("package", activity.getPackageName(), null);

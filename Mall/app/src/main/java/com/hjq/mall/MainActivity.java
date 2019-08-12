@@ -1,30 +1,25 @@
 package com.hjq.mall;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.hjq.mall.pro.attention.view.AttentionFragment;
 import com.hjq.mall.pro.base.view.bage.BadgeView;
 import com.hjq.mall.pro.essence.view.EssenceFragment;
 import com.hjq.mall.pro.mine.view.MineFragment;
 import com.hjq.mall.pro.newpost.view.NewpostFragment;
 import com.hjq.mall.pro.publish.view.PublishFragment;
-import com.hjq.mall.utils.ToastUtil;
 import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
@@ -56,7 +51,7 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
         super.onBackPressed();
         long currentTIme = System.currentTimeMillis();
         if(lastBackPressTime == -1L || currentTIme - lastBackPressTime >= 2000){
-            ToastUtil.showToast(this, "再按一次退出");
+            ToastUtils.showShort("再按一次退出");
         } else {
             finish();
         }
@@ -119,7 +114,7 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
 
     @Override
     public void onTabChanged(String tabId) {
-        ToastUtil.showToast(this,tabId);
+        ToastUtils.showShort(tabId);
         int lenght = tabItemList.size();
         //重置Tab样式
         for (int i = 0;i < lenght; i++){

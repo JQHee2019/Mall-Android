@@ -1,12 +1,13 @@
 package com.hjq.mall.pro.mine.view.listener;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.hjq.mall.bean.mine.MineBean;
-import com.hjq.mall.utils.ToastUtil;
 
 public class MineClickListener  extends SimpleClickListener {
 
@@ -20,7 +21,7 @@ public class MineClickListener  extends SimpleClickListener {
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         final MineBean bean= (MineBean) baseQuickAdapter.getData().get(position);
         int id = bean.getId();
-        ToastUtil.showToast(mContext, String.valueOf(id));
+        ToastUtils.showShort(String.valueOf(id));
         switch (id) {
             case 1:
                 break;

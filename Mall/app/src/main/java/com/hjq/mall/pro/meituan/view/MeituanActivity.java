@@ -1,6 +1,5 @@
 package com.hjq.mall.pro.meituan.view;
 
-import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,13 +8,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.hjq.mall.R;
 import com.hjq.mall.pro.meituan.bean.MeituanBean;
 import com.hjq.mall.pro.meituan.view.adapter.MeituanAdapter;
 import com.hjq.mall.pro.meituan.view.adapter.MeituanGridViewAdapter;
-import com.hjq.mall.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,8 +80,8 @@ public class MeituanActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     int pos = position + curIndex * pageSize;
-                    final Context context = getBaseContext();
-                    ToastUtil.showToast(context, mDatas.get(pos).getName());
+                    ToastUtils.showShort(mDatas.get(pos).getName());
+                    // ToastUtil.showToast(MeituanActivity.this, mDatas.get(pos).getName());
                 }
             });
         }
