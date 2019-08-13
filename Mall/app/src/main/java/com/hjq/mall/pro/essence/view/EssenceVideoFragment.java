@@ -93,9 +93,11 @@ public class EssenceVideoFragment extends BaseFragment {
             @Override
             public void onSuccess(List<PostsListBean.PostList> result) {
                 if (isDownRefresh){
-                    mRefreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+                    mRefreshLayout.finishRefresh();
+                    // mRefreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
                 }else{
-                    mRefreshLayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
+                    mRefreshLayout.finishLoadMore();
+                    //mRefreshLayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
                 }
                 if (result == null){
                     ToastUtils.showShort("加载失败");
@@ -113,6 +115,13 @@ public class EssenceVideoFragment extends BaseFragment {
 
             @Override
             public void onError(String message) {
+                if (isDownRefresh){
+                    mRefreshLayout.finishRefresh();
+                    // mRefreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+                }else{
+                    mRefreshLayout.finishLoadMore();
+                    //mRefreshLayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
+                }
                 ToastUtils.showShort("加载失败");
             }
         });
