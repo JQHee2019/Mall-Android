@@ -3,12 +3,14 @@ package com.hjq.mall;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TabHost;
@@ -38,10 +40,23 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        // 设置全屏 必须在setContentView之前设置 不然报错
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+            decorView.setSystemUiVisibility(option);
+            // getWindow().setNavigationBarColor(Color.TRANSPARENT);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
 
-        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimaryDark), 127);
+        setContentView(R.layout.activity_main);
+        // 设置底部虚拟按键不遮挡内容
+        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+
+        // StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimaryDark), 0);
         // getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        // StatusBarUtil.setTranslucent(this, 0);
+        // StatusBarUtil.setTranslucent(this);
 
         //由于Java面向对象的语言(OO设计)
         initTabData();
@@ -51,8 +66,8 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        long currentTIme = System.currentTimeMillis();
-        if(lastBackPressTime == -1L || currentTIme - lastBackPressTime >= 2000){
+        long currentTime = System.currentTimeMillis();
+        if(lastBackPressTime == -1L || currentTime - lastBackPressTime >= 2000){
             ToastUtils.showShort("再按一次退出");
         } else {
             finish();
