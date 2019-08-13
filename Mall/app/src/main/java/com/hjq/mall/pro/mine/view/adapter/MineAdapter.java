@@ -22,7 +22,7 @@ public class MineAdapter extends BaseMultiItemQuickAdapter<MineBean, BaseViewHol
     protected void convert(BaseViewHolder helper, MineBean item) {
         switch (helper.getItemViewType()) {
             case MineItemType.ITEM_NORMAL:
-                helper.setText(R.id.tv_name, item.getText());
+                helper.setText(R.id.tv_name, item.getmItemBean().getName());
                 /*
                 helper.setText(R.id.tv_arrow_text, item.getText());
                 helper.setText(R.id.tv_arrow_value, item.getValue());

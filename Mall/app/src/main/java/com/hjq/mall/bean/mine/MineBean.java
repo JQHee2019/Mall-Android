@@ -6,26 +6,26 @@ public class MineBean implements MultiItemEntity {
 
     private int mItemType = 0;
     private String mImageUrl = null;
-    private String mText = null;
+    private MineItemBean mItemBean = null;
     private String mValue = null;
     private int mId = 0;
 
     /**
      * @param itemType  item的类型
      * @param imageUrl  图片链接
-     * @param text      文本
+     * @param itemBean      子项内容
      * @param value
      * @param id        当前的id
      */
     public MineBean(int itemType,
                     String imageUrl,
-                    String text,
+                    MineItemBean itemBean,
                     String value,
                     int id
     ) {
         mItemType = itemType;
         mImageUrl = imageUrl;
-        mText = text;
+        mItemBean = itemBean;
         mValue = value;
         mId = id;
     }
@@ -42,15 +42,12 @@ public class MineBean implements MultiItemEntity {
         mImageUrl = imageUrl;
     }
 
-    public String getText() {
-        if (mText == null) {
-            return  "";
-        }
-        return mText;
+    public MineItemBean getmItemBean() {
+        return mItemBean;
     }
 
-    public void setText(String text) {
-        mText = text;
+    public void setmItemBean(MineItemBean mItemBean) {
+        this.mItemBean = mItemBean;
     }
 
     public String getValue() {
@@ -81,7 +78,7 @@ public class MineBean implements MultiItemEntity {
         private int id = 0;
         private int itemType = 0;
         private String imageUrl = null;
-        private String text = null;
+        private MineItemBean itemBean = null;
         private String value = null;
 
         public Builder setId(int id) {
@@ -99,8 +96,8 @@ public class MineBean implements MultiItemEntity {
             return this;
         }
 
-        public Builder setText(String text) {
-            this.text = text;
+        public Builder setItemBean(MineItemBean itemBean) {
+            this.itemBean = itemBean;
             return this;
         }
 
@@ -110,7 +107,7 @@ public class MineBean implements MultiItemEntity {
         }
 
         public MineBean build() {
-            return new MineBean(itemType, imageUrl, text, value, id);
+            return new MineBean(itemType, imageUrl, itemBean , value, id);
         }
     }
 }
