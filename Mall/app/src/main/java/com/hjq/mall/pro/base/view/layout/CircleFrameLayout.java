@@ -13,6 +13,9 @@ import android.widget.FrameLayout;
 import com.blankj.utilcode.util.StringUtils;
 import com.hjq.mall.R;
 
+/**
+ * 圆形布局
+ */
 public class CircleFrameLayout extends FrameLayout {
     private int mColor;
     private Paint mPaint;

@@ -19,7 +19,7 @@ public final class HeaderInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request originalRequest = chain.request();
         Request.Builder builder = originalRequest.newBuilder();
-        //设置具体的Head内容
+        // 设置具体的Head内容
         builder.header("timestamp", System.currentTimeMillis() + "");
         Request.Builder requestBuilder =
                 builder.method(originalRequest.method(), originalRequest.body());
