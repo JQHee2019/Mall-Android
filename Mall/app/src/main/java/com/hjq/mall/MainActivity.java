@@ -1,6 +1,7 @@
 package com.hjq.mall;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
@@ -19,6 +20,7 @@ import com.hjq.mall.pro.base.view.bage.BadgeView;
 import com.hjq.mall.pro.essence.view.EssenceFragment;
 import com.hjq.mall.pro.mine.view.MineFragment;
 import com.hjq.mall.pro.newpost.view.NewpostFragment;
+import com.hjq.mall.pro.publish.view.PublishActivity;
 import com.hjq.mall.pro.publish.view.PublishFragment;
 import com.jaeger.library.StatusBarUtil;
 
@@ -105,7 +107,7 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
                     .setBackgroundColor(getResources().getColor(R.color.main_bottom_bg));
             //监听点击Tab
             fragmentTabHost.setOnTabChangedListener(this);
-            //默认选中第一个Tab
+            // 第一次默认选中第一个Tab
             if (i == 0){
                 tabItem.setChecked(true);
             }
@@ -114,15 +116,22 @@ public class MainActivity extends AppCompatActivity  implements TabHost.OnTabCha
 
     @Override
     public void onTabChanged(String tabId) {
-        ToastUtils.showShort(tabId);
+        // ToastUtils.showShort(tabId);
         int lenght = tabItemList.size();
         //重置Tab样式
         for (int i = 0;i < lenght; i++){
             TabItem tabItem = tabItemList.get(i);
             if (tabId.equals(tabItem.getTitleString())){
                 if(TextUtils.isEmpty(tabId)) {
+
+                    // 默认还是选中上一次的
                     fragmentTabHost.setCurrentTab(currentSelect);
                     tabItem.setChecked(false);
+
+                    // 加号菜单跳转
+                    final Intent intent = new Intent(this, PublishActivity.class);
+                    startActivity(intent);
+
                     return;
                 }
                 currentSelect = i;

@@ -24,7 +24,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".pro.mine.mylogistics.view.MyLogisticsActivity"></activity>
+        <activity android:name=".pro.publish.view.PublishActivity"></activity>
+        <activity android:name=".pro.mine.mylogistics.view.MyLogisticsActivity" />
         <activity android:name=".pro.mine.setting.view.SettingActivity" />
         <activity android:name=".pro.meituan.view.MeituanActivity" />
         <activity android:name=".pro.guide.view.GuideActivity" />
