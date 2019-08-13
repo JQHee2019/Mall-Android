@@ -23,8 +23,8 @@ import java.util.Arrays;
  */
 public class EssenceFragment extends BaseFragment {
 
-    private TabLayout tab_essence;
-    private ViewPager vp_essence;
+    private TabLayout mTabEssence;
+    private ViewPager mVpEssence;
 
 
     @Override
@@ -35,8 +35,8 @@ public class EssenceFragment extends BaseFragment {
     @Override
     public void initContentView(View viewContent) {
         initToolBar(viewContent);
-        this.tab_essence = (TabLayout) viewContent.findViewById(R.id.tab_essence);
-        this.vp_essence = (ViewPager) viewContent.findViewById(R.id.vp_essence);
+        this.mTabEssence = (TabLayout) viewContent.findViewById(R.id.tab_essence);
+        this.mVpEssence = (ViewPager) viewContent.findViewById(R.id.vp_essence);
     }
 
     @Override
@@ -50,8 +50,8 @@ public class EssenceFragment extends BaseFragment {
         Log.d("debug", String.valueOf(titles));
         EssenceAdapter adapter =
                 new EssenceAdapter(getFragmentManager(), Arrays.asList(titles));
-        this.vp_essence.setAdapter(adapter);
-        this.tab_essence.setupWithViewPager(this.vp_essence);
+        this.mVpEssence.setAdapter(adapter);
+        this.mTabEssence.setupWithViewPager(this.mVpEssence);
     }
 
     private void initToolBar(View viewContent){

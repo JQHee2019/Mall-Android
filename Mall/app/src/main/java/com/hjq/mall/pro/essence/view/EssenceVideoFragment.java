@@ -32,11 +32,11 @@ public class EssenceVideoFragment extends BaseFragment {
 
     private EssenceVideoPresenter presenter;
 
-    private RefreshLayout refreshLayout;
-    private RecyclerView recyclerView;
-    private EssenceVideoAdapter videoAdapter;
+    private RefreshLayout mRefreshLayout;
+    private RecyclerView mRecyclerView;
+    private EssenceVideoAdapter mVideoAdapter;
 
-    private List<PostsListBean.PostList> postList = new ArrayList<>();
+    private List<PostsListBean.PostList> mPostList = new ArrayList<>();
 
     public void setType(int mType) {
         this.mType = mType;
@@ -59,22 +59,22 @@ public class EssenceVideoFragment extends BaseFragment {
     @Override
     public void initContentView(View viewContent) {
 
-        recyclerView = (RecyclerView) viewContent.findViewById(R.id.recycler_view_test_rv);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView = (RecyclerView) viewContent.findViewById(R.id.recycler_view_test_rv);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        videoAdapter = new EssenceVideoAdapter(postList,getContext());
-        recyclerView.setAdapter(videoAdapter);
+        mVideoAdapter = new EssenceVideoAdapter(mPostList, getContext());
+        mRecyclerView.setAdapter(mVideoAdapter);
 
-        refreshLayout = (RefreshLayout)viewContent.findViewById(R.id.refreshLayout);
-        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+        mRefreshLayout = (RefreshLayout)viewContent.findViewById(R.id.refreshLayout);
+        mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 loadData(true);
                 // refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
             }
         });
-        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+        mRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(RefreshLayout refreshlayout) {
                 loadData(false);
@@ -93,9 +93,9 @@ public class EssenceVideoFragment extends BaseFragment {
             @Override
             public void onSuccess(List<PostsListBean.PostList> result) {
                 if (isDownRefresh){
-                    refreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+                    mRefreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
                 }else{
-                    refreshLayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
+                    mRefreshLayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
                 }
                 if (result == null){
                     ToastUtils.showShort("加载失败");
@@ -104,10 +104,10 @@ public class EssenceVideoFragment extends BaseFragment {
                     //刷新UI
                     if (isDownRefresh){
                         // 如果你是下拉刷新,我就情况列表
-                        postList.clear();
+                        mPostList.clear();
                     }
-                    postList.addAll(result);
-                    videoAdapter.notifyDataSetChanged();
+                    mPostList.addAll(result);
+                    mVideoAdapter.notifyDataSetChanged();
                 }
             }
 

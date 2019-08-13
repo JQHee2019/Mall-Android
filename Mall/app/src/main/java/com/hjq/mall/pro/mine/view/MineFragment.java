@@ -65,6 +65,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         logisticsItemBean.setIcon(0);
         logisticsItemBean.setName("我的物流");
         final MineBean logisticsBean = new MineBean.Builder()
+                .setId(0)
                 .setItemType(MineItemType.ITEM_NORMAL)
                 .setItemBean(logisticsItemBean)
                 .build();
