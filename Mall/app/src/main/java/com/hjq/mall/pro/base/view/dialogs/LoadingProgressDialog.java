@@ -16,6 +16,10 @@ import com.hjq.mall.http.OkHttpManager;
 
 import java.lang.ref.WeakReference;
 
+
+/**
+ * loading dialog
+ */
 public class LoadingProgressDialog extends Dialog implements DialogInterface.OnCancelListener {
 
     private WeakReference<Context> mContext = new WeakReference<>(null);

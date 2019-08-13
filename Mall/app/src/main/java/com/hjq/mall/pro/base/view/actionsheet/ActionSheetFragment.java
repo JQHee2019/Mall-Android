@@ -41,6 +41,9 @@ import java.lang.reflect.Method;
     }).show();
 */
 
+/**
+ * 仿iOS样式的 actionsheet
+ */
 public class ActionSheetFragment extends Fragment {
 
     //是否已经关闭

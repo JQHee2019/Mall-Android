@@ -36,19 +36,24 @@ public class AlertDialog extends Dialog {
     private final String MESSAGE;
     private final String CONFIRMTEXT;
     private final String CANCELTEXT;
-    private final onConfirmClickListener ONCONFIRMCLICKLISTENER;
-    private final onCancelClickListener ONCANCELCLICKLISTENER;
+    private final OnConfirmClickListener ONCONFIRMCLICKLISTENER;
+    private final OnCancelClickListener ONCANCELCLICKLISTENER;
 
-    public interface onConfirmClickListener {
+    public interface OnConfirmClickListener {
         void onClick(View view);
     }
 
-    public interface onCancelClickListener {
+    public interface OnCancelClickListener {
         void onClick(View view);
     }
 
-    private AlertDialog(@NonNull Context context, String title, String message, String confirmText, String cancelText,
-                        onConfirmClickListener onConfirmClickListener, onCancelClickListener onCancelClickListener) {
+    private AlertDialog(@NonNull Context context,
+                        String title,
+                        String message,
+                        String confirmText,
+                        String cancelText,
+                        OnConfirmClickListener onConfirmClickListener,
+                        OnCancelClickListener onCancelClickListener) {
         super(context, R.style.AlertDialog);
         this.TITLE = title;
         this.MESSAGE = message;
@@ -116,8 +121,8 @@ public class AlertDialog extends Dialog {
         private String mMessage;
         private String mConfirmText;
         private String mCancelText;
-        private onConfirmClickListener mOnConfirmClickListener;
-        private onCancelClickListener mOnCcancelClickListener;
+        private OnConfirmClickListener mOnConfirmClickListener;
+        private OnCancelClickListener mOnCcancelClickListener;
         private Context mContext;
 
         private Builder(Context context) {
@@ -134,13 +139,13 @@ public class AlertDialog extends Dialog {
             return this;
         }
 
-        public Builder setOnConfirmClickListener(String confirmText, onConfirmClickListener confirmclickListener) {
+        public Builder setOnConfirmClickListener(String confirmText, OnConfirmClickListener confirmclickListener) {
             this.mConfirmText = confirmText;
             this.mOnConfirmClickListener = confirmclickListener;
             return this;
         }
 
-        public Builder setOnCancelClickListener(String cancelText, onCancelClickListener onCancelclickListener) {
+        public Builder setOnCancelClickListener(String cancelText, OnCancelClickListener onCancelclickListener) {
             this.mCancelText = cancelText;
             this.mOnCcancelClickListener = onCancelclickListener;
             return this;
