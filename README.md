@@ -21,6 +21,7 @@
 - √17、拨打电话
 - √18、内存泄漏LeakCanary
 - x19、rxjava 系列 https://www.jianshu.com/p/464fa025229e
+- x20、rxBinding: https://www.jianshu.com/p/a74843cf1b18
 
 
 ##### 破解
