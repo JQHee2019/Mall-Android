@@ -36,4 +36,4 @@
 - 玩安卓实战：https://github.com/hegaojian/WanAndroid
 - 网络请求封装：https://www.jianshu.com/p/bd758f51742e
 - kotlin mmkv: https://www.jianshu.com/p/68d5a56823cc
-- LiveData mvvm: https://gitee.com/aiwoba/MVVM
+- LiveData mvvm: https://gitee.com/aiwoba/MVVM、https://www.jianshu.com/p/152a323f71f9
