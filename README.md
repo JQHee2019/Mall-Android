@@ -20,6 +20,7 @@
 - x16、greendao
 - √17、拨打电话
 - √18、内存泄漏LeakCanary
+- x19、rxjava 系列 https://www.jianshu.com/p/464fa025229e
 
 
 ##### 破解
