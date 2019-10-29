@@ -26,7 +26,7 @@
 - 网址 https://www.androiddevtools.cn 下载androidkiller
 
 
-
+##### 框架
 - Kotlin 打造完整电商：https://github.com/LixyAndroid/GDUTMallServer
 - 仿抖音短视频系列教程：https://www.jianshu.com/p/2c71f699c5c4
 - trie树搜索：https://www.jianshu.com/p/a2a8a4f2fd7b
@@ -42,3 +42,4 @@
 ##### UILibraly
 - (一) https://www.jianshu.com/p/8cbfb0da17a3
 - (二) https://www.jianshu.com/p/7ce982598a34
+- 抖动的TextView: https://www.jianshu.com/p/7135707b222e
